@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Test - Life Saver</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 { 
+      color: #c0182a; 
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #c0182a;
+    }
+    .section h2 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    .btn {
+      background: #c0182a;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #a01525;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(192, 24, 42, 0.3);
+    }
+    .btn-secondary {
+      background: #6c757d;
+    }
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+    .data-display {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #dee2e6;
+    }
+    .data-item {
+      padding: 10px;
+      margin-bottom: 8px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 3px solid #c0182a;
+    }
+    .data-item strong {
+      color: #c0182a;
+    }
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+    .status-success {
+      background: #d4edda;
+      color: #155724;
+    }
+    .status-warning {
+      background: #fff3cd;
+      color: #856404;
+    }
+    .count {
+      display: inline-block;
+      background: #c0182a;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-left: 10px;
+    }
+    .info-box {
+      background: #e7f3ff;
+      border: 1px solid #b3d9ff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .info-box strong {
+      color: #004085;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🩸 Life Saver Integration Test</h1>
+    <p class="subtitle">Test the connection between Registration/Request forms and Admin Panel</p>
+
+    <div class="info-box">
+      <strong>📋 How to Test:</strong><br>
+      1. Click "View Current Data" to see what's in localStorage<br>
+      2. Open "Register as Donor" or "Request Blood" pages in new tabs<br>
+      3. Fill and submit forms there<br>
+      4. Come back here and click "Refresh Data" to see updates<br>
+      5. Open Admin Panel to see the data displayed there
+    </div>
+
+    <div class="section">
+      <h2>🔗 Quick Links</h2>
+      <button class="btn" onclick="window.open('register as donor.html', '_blank')">
+        📝 Open Register Form
+      </button>
+      <button class="btn" onclick="window.open('Request Blood.html', '_blank')">
+        🩸 Open Request Form
+      </button>
+      <button class="btn" onclick="window.open('admin panel.html', '_blank')">
+        👨‍💼 Open Admin Panel
+      </button>
+    </div>
+
+    <div class="section">
+      <h2>👥 Registered Donors <span class="count" id="donorCount">0</span></h2>
+      <button class="btn btn-secondary" onclick="loadDonors()">🔄 Refresh Data</button>
+      <button class="btn btn-secondary" onclick="clearDonors()">🗑️ Clear All Donors</button>
+      <div class="data-display" id="donorsDisplay">
+        <p style="color: #999;">Click "Refresh Data" to load donors...</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🏥 Blood Requests <span class="count" id="requestCount">0</span></h2>
+      <button class="btn btn-secondary" onclick="loadRequests()">🔄 Refresh Data</button>
+      <button class="btn btn-secondary" onclick="clearRequests()">🗑️ Clear All Requests</button>
+      <div class="data-display" id="requestsDisplay">
+        <p style="color: #999;">Click "Refresh Data" to load requests...</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🧪 Test Actions</h2>
+      <button class="btn" onclick="addTestDonor()">➕ Add Test Donor</button>
+      <button class="btn" onclick="addTestRequest()">➕ Add Test Request</button>
+      <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear All Data</button>
+    </div>
+  </div>
+
+  <script>
+    // Load and display donors
+    function loadDonors() {
+      try {
+        const donors = JSON.parse(localStorage.getItem('lifesaver_donors') || '[]');
+        const display = document.getElementById('donorsDisplay');
+        const count = document.getElementById('donorCount');
+        
+        count.textContent = donors.length;
+        
+        if (donors.length === 0) {
+          display.innerHTML = '<p style="color: #999;">No donors registered yet.</p>';
+          return;
+        }
+        
+        display.innerHTML = donors.map(d => `
+          <div class="data-item">
+            <strong>${d.name}</strong> 
+            <span class="status status-success">${d.blood}</span>
+            <span class="status status-warning">${d.status || 'Active'}</span>
+            <br>
+            <small>📞 ${d.phone || 'N/A'} | 📍 ${d.city || 'N/A'} | 🆔 ${d.id || 'N/A'}</small>
+            ${d.registeredAt ? `<br><small style="color: #666;">Registered: ${d.registeredAt}</small>` : ''}
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Error loading donors:', e);
+        document.getElementById('donorsDisplay').innerHTML = '<p style="color: red;">Error loading data</p>';
+      }
+    }
+
+    // Load and display requests
+    function loadRequests() {
+      try {
+        const requests = JSON.parse(localStorage.getItem('lifesaver_requests') || '[]');
+        const display = document.getElementById('requestsDisplay');
+        const count = document.getElementById('requestCount');
+        
+        count.textContent = requests.length;
+        
+        if (requests.length === 0) {
+          display.innerHTML = '<p style="color: #999;">No blood requests yet.</p>';
+          return;
+        }
+        
+        display.innerHTML = requests.map(r => `
+          <div class="data-item">
+            <strong>${r.patient || 'Unknown Patient'}</strong> 
+            <span class="status status-success">${r.blood}</span>
+            <span class="status status-warning">${r.urgency || 'Medium'}</span>
+            <br>
+            <small>🏥 ${r.hospital || 'N/A'} | 💉 ${r.units || 1} units | 🆔 ${r.id || 'N/A'}</small>
+            <br>
+            <small style="color: #666;">📅 Required by: ${r.date || 'N/A'} | Status: ${r.status || 'Open'}</small>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error('Error loading requests:', e);
+        document.getElementById('requestsDisplay').innerHTML = '<p style="color: red;">Error loading data</p>';
+      }
+    }
+
+    // Add test donor
+    function addTestDonor() {
+      const donors = JSON.parse(localStorage.getItem('lifesaver_donors') || '[]');
+      const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+      const cities = ['Mumbai', 'Delhi', 'Bangalore', 'Chennai', 'Kolkata'];
+      const names = ['Amit Kumar', 'Priya Singh', 'Rahul Sharma', 'Sneha Patel', 'Vikram Reddy'];
+      
+      const testDonor = {
+        id: 'D' + (donors.length + 1).toString().padStart(3, '0'),
+        name: names[Math.floor(Math.random() * names.length)],
+        blood: bloodTypes[Math.floor(Math.random() * bloodTypes.length)],
+        age: Math.floor(Math.random() * 30) + 25,
+        phone: '98' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'),
+        city: cities[Math.floor(Math.random() * cities.length)],
+        status: 'Active',
+        donations: 0,
+        registeredAt: new Date().toLocaleString()
+      };
+      
+      donors.unshift(testDonor);
+      localStorage.setItem('lifesaver_donors', JSON.stringify(donors));
+      loadDonors();
+      alert('✅ Test donor added successfully!');
+    }
+
+    // Add test request
+    function addTestRequest() {
+      const requests = JSON.parse(localStorage.getItem('lifesaver_requests') || '[]');
+      const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+      const hospitals = ['City Hospital', 'Apollo Medical', 'Max Healthcare', 'Fortis Hospital'];
+      const patients = ['Rajesh Kumar', 'Meera Joshi', 'Suresh Iyer', 'Anjali Verma'];
+      const urgencies = ['High', 'Medium', 'Low'];
+      
+      const testRequest = {
+        id: 'REQ-' + (requests.length + 1).toString().padStart(3, '0'),
+        hospital: hospitals[Math.floor(Math.random() * hospitals.length)],
+        patient: patients[Math.floor(Math.random() * patients.length)],
+        blood: bloodTypes[Math.floor(Math.random() * bloodTypes.length)],
+        units: Math.floor(Math.random() * 4) + 1,
+        urgency: urgencies[Math.floor(Math.random() * urgencies.length)],
+        date: new Date().toLocaleDateString(),
+        status: 'Open',
+        phone: '98' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0')
+      };
+      
+      requests.unshift(testRequest);
+      localStorage.setItem('lifesaver_requests', JSON.stringify(requests));
+      loadRequests();
+      alert('✅ Test request added successfully!');
+    }
+
+    // Clear functions
+    function clearDonors() {
+      if (confirm('Are you sure you want to clear all donors?')) {
+        localStorage.removeItem('lifesaver_donors');
+        loadDonors();
+        alert('✅ All donors cleared!');
+      }
+    }
+
+    function clearRequests() {
+      if (confirm('Are you sure you want to clear all requests?')) {
+        localStorage.removeItem('lifesaver_requests');
+        loadRequests();
+        alert('✅ All requests cleared!');
+      }
+    }
+
+    function clearAll() {
+      if (confirm('Are you sure you want to clear ALL data (donors + requests)?')) {
+        localStorage.removeItem('lifesaver_donors');
+        localStorage.removeItem('lifesaver_requests');
+        loadDonors();
+        loadRequests();
+        alert('✅ All data cleared!');
+      }
+    }
+
+    // Auto-refresh every 3 seconds
+    setInterval(() => {
+      loadDonors();
+      loadRequests();
+    }, 3000);
+
+    // Initial load
+    loadDonors();
+    loadRequests();
+  </script>
+</body>
+</html>

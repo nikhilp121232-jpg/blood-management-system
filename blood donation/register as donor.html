@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Life Saver | Register as a Donor</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+        <link rel="stylesheet" href="/style/register.css">
+
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- navigation (consistent with crimson branding) -->
+    <nav class="nav">
+      <div class="nav-logo" onclick="scrollToTop()">
+        <div class="nav-logo-drop">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+          </svg>
+        </div>
+        <div class="nav-logo-text">Life Saver</div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register as donor.html" class="nav-link">Register as Donor</a>
+        <a href="Request Blood.html" class="nav-link">Request Blood</a>
+        <a href="find donor.html" class="nav-link">Find Donors</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <button class="nav-cta" id="loginNavBtn" onclick="openLoginModal()">Login</button>
+      </div>
+      <div class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- hero register section -->
+    <div class="register-hero">
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <div class="section-tag-text">Become a Donor</div>
+      </div>
+      <h2 class="section-h2">Register to <em>Save Lives</em></h2>
+      <p class="section-sub">Join our network of everyday heroes. Fill the form below — your blood type could be the
+        lifeline someone urgently needs.</p>
+    </div>
+
+    <!-- main registration form -->
+    <div class="register-body">
+      <div id="formSectionLock" class="form-lock-wrapper locked">
+        <div class="lock-overlay">
+          <button class="lock-btn" onclick="window.location.href='index.html?triggerLogin=true'">🩸 LOG IN TO ACCESS FORM</button>
+        </div>
+        <div class="form-card" id="donorFormCard">
+          <div class="form-section-title">Personal Information</div>
+          <div class="form-row">
+            <div class="field"><label>First Name *</label><input type="text" id="regFname" placeholder="Priya"
+                autocomplete="given-name"></div>
+            <div class="field"><label>Last Name *</label><input type="text" id="regLname" placeholder="Sharma"
+                autocomplete="family-name"></div>
+          </div>
+          <div class="form-row triple">
+            <div class="field"><label>Age *</label><input type="number" id="regAge" placeholder="28" min="18" max="65">
+            </div>
+            <div class="field"><label>Gender</label><select id="regGender">
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+              </select></div>
+            <div class="field"><label>Phone *</label><input type="tel" id="regPhone" placeholder="+91 98765 43210"
+                autocomplete="tel"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>City *</label><input type="text" id="regCity" placeholder="Mumbai"></div>
+          </div>
+
+          <div class="form-divider"></div>
+          <div class="form-section-title">Blood Information</div>
+          <div class="field" style="margin-bottom: 20px;">
+            <label>Blood Type *</label>
+            <div class="blood-type-selector" id="bloodGroupSelector">
+              <div class="bts-option" data-bt="A+">A+</div>
+              <div class="bts-option" data-bt="A-">A−</div>
+              <div class="bts-option" data-bt="B+">B+</div>
+              <div class="bts-option" data-bt="B-">B−</div>
+              <div class="bts-option" data-bt="AB+">AB+</div>
+              <div class="bts-option" data-bt="AB-">AB−</div>
+              <div class="bts-option" data-bt="O+">O+</div>
+              <div class="bts-option" data-bt="O-">O−</div>
+            </div>
+            <input type="hidden" id="regBloodHidden">
+          </div>
+
+          <div class="form-row">
+            <div class="field"><label>Last Donation Date (if any)</label><input type="date" id="regLastDon"></div>
+            <div class="field"><label>Medical Conditions</label><select id="regMedical">
+                <option value="none">None — I'm fully healthy</option>
+                <option>Diabetes (controlled)</option>
+                <option>Hypertension (controlled)</option>
+                <option>Other (minor)</option>
+              </select></div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Full Address / Area</label><textarea id="regAddress"
+                placeholder="Street, landmark, district…"></textarea></div>
+          </div>
+
+          <div class="form-divider"></div>
+          <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom: 28px;">
+            <input type="checkbox" id="regConsent"
+              style="margin-top:4px; width:18px; height:18px; accent-color: var(--red);">
+            <label for="regConsent" style="font-size:13px; color:#555; line-height:1.5; font-weight:400;">I confirm I am
+              between 18–65 years old, weigh above 50kg, have no major transmissible diseases, and consent to be
+              contacted
+              by Life Saver when my blood type is needed nearby. I understand that donation is voluntary and medically
+              screened.</label>
+          </div>
+
+          <button class="form-submit" id="registerBtn">Complete Registration →</button>
+
+          <div class="success-banner" id="regSuccessBanner">
+            <div class="success-icon">🩸❤️</div>
+            <h3>Welcome to the Life Saver Family!</h3>
+            <p id="regSuccessMsg">You're now a registered donor. You'll receive alerts when blood is needed in your
+              area.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer similar to original style -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="display:inline-flex">
+            <div class="nav-logo-drop"><svg viewBox="0 0 24 24">
+                <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+              </svg></div>
+            <div class="nav-logo-text">Life Saver</div>
+          </div>
+          <p style="margin-top:12px">India's most trusted blood donor network. Every drop donated saves up to 3 lives.
+            Join us today.</p>
+        </div>
+        <div class="footer-col">
+          <h4>For Donors</h4><span onclick="scrollToForm()">Register Now</span><span>Eligibility</span><span>Donation
+            Centres</span>
+        </div>
+        <div class="footer-col">
+          <h4>For Patients</h4><span>Request Blood</span><span>Find Donors</span><span>Emergency Hotline</span>
+        </div>
+        <div class="footer-col">
+          <h4>Organisation</h4><span>About Us</span><span>Contact</span><span>Privacy</span>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Life Saver Blood Donor Network. All rights reserved.</span><span>🩸 Give
+          blood · Give life</span></div>
+    </footer>
+  </div>
+
+  <div class="toast-panel" id="toastPanel"></div>
+
+    <style>
+      .locked { pointer-events: none; }
+    </style>
+
+    <script>
+      // ---------- GLOBAL donor storage (in-memory demo registry) ----------
+      let registeredDonors = [];   // stores local donor objects
+
+      // blood type selection state
+      let selectedBloodType = '';
+
+      // DOM elements
+      const bloodOptions = document.querySelectorAll('#bloodGroupSelector .bts-option');
+      const regBloodHidden = document.getElementById('regBloodHidden');
+      const regFname = document.getElementById('regFname');
+      const regLname = document.getElementById('regLname');
+      const regAge = document.getElementById('regAge');
+      const regPhone = document.getElementById('regPhone');
+      const regCity = document.getElementById('regCity');
+      const regConsent = document.getElementById('regConsent');
+      const regSuccessBanner = document.getElementById('regSuccessBanner');
+      const regSuccessMsgSpan = document.getElementById('regSuccessMsg');
+      const registerBtn = document.getElementById('registerBtn');
+
+      // initialize blood type selection UI
+      function initBloodSelector() {
+        bloodOptions.forEach(opt => {
+          opt.addEventListener('click', function (e) {
+            // remove selected class from all
+            bloodOptions.forEach(o => o.classList.remove('selected'));
+            this.classList.add('selected');
+            const btValue = this.getAttribute('data-bt');
+            selectedBloodType = btValue;
+            if (regBloodHidden) regBloodHidden.value = btValue;
+          });
+        });
+      }
+
+      // toast notification
+      function showToast(type, title, message) {
+        const panel = document.getElementById('toastPanel');
+        const toast = document.createElement('div');
+        toast.className = `toast`;
+        const iconMap = { red: '🚨', green: '✅', gold: '⚡', blue: 'ℹ️' };
+        const icon = iconMap[type] || '🩸';
+        toast.innerHTML = `
+      <div class="toast-icon">${icon}</div>
+      <div><div class="toast-title">${title}</div><div class="toast-msg">${message}</div></div>
+      <button class="toast-x" onclick="this.parentElement.remove()">×</button>
+      <div class="toast-bar" style="width:100%"></div>
+    `;
+        panel.appendChild(toast);
+        const bar = toast.querySelector('.toast-bar');
+        const duration = 5000;
+        bar.style.transition = `width ${duration}ms linear`;
+        requestAnimationFrame(() => { requestAnimationFrame(() => { bar.style.width = '0%'; }); });
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.3s';
+          setTimeout(() => toast.remove(), 300);
+        }, duration);
+      }
+
+      // ===== AUTH GUARD =====
+      let currentUser = null;
+      let pendingNavUrl = null;
+
+      function getSession() {
+        try { return JSON.parse(sessionStorage.getItem('lifesaver_user')); } catch (e) { return null; }
+      }
+
+      function checkLoginSession() {
+        const s = getSession();
+        if (s && s.email) {
+          const name = s.email.split('@')[0];
+          currentUser = { email: s.email, name: name.charAt(0).toUpperCase() + name.slice(1) };
+          unlockForm();
+          // Hide login button
+          const btn = document.getElementById('loginNavBtn');
+          if (btn) btn.style.display = 'none';
+        } else {
+          lockForm();
+        }
+      }
+
+      function toggleProfileDropdown() {
+        document.getElementById('profileDropdown').classList.toggle('show');
+      }
+
+      function updateUIAfterLogin() {
+        document.getElementById('loginNavBtn').style.display = 'none';
+        document.getElementById('profileSection').style.display = 'block';
+        document.getElementById('profileName').textContent = currentUser.name;
+        document.getElementById('profileEmail').textContent = currentUser.email;
+        document.getElementById('profileDonorId').textContent = "Donor ID: D-" + Math.floor(1000 + Math.random() * 9000);
+        document.getElementById('profileBtn').textContent = currentUser.name.charAt(0).toUpperCase();
+      }
+
+      function lockForm() {
+        const lock = document.getElementById('formSectionLock');
+        if (lock) lock.classList.add('locked');
+      }
+
+      function unlockForm() {
+        const lock = document.getElementById('formSectionLock');
+        if (lock) lock.classList.remove('locked');
+      }
+
+      function openLoginModal() {
+        document.getElementById('authLoginModal').classList.add('show');
+        document.getElementById('authLoginError').style.display = 'none';
+      }
+
+      function closeLoginModal() {
+        document.getElementById('authLoginModal').classList.remove('show');
+      }
+
+      function performLogin() {
+        const email = document.getElementById('authEmail').value.trim();
+        if (!email || !email.includes('@')) {
+          document.getElementById('authLoginError').style.display = 'block';
+          return;
+        }
+        const name = email.split('@')[0];
+        sessionStorage.setItem('lifesaver_user', JSON.stringify({ email }));
+        showToast('green', 'Welcome!', `Logging in...`);
+        setTimeout(() => {
+          window.location.href = 'index.html?view=profile';
+        }, 1000);
+        if (pendingNavUrl) { const u = pendingNavUrl; pendingNavUrl = null; setTimeout(() => window.location.href = u, 300); }
+      }
+
+      function logoutUser() {
+        currentUser = null;
+        sessionStorage.removeItem('lifesaver_user');
+        showNavLogin();
+        showToast('gold', 'Logged Out', 'You have been signed out.');
+      }
+      // ===== END AUTH GUARD =====
+
+      // validation and submit
+      function submitDonorRegistration() {
+        // Auth guard
+        if (!currentUser) {
+          showToast('gold', '🔒 Login Required', 'Please log in to register as a donor.');
+          openLoginModal();
+          return false;
+        }
+        // get values
+        const firstName = regFname.value.trim();
+        const lastName = regLname.value.trim();
+        const age = parseInt(regAge.value);
+        const phone = regPhone.value.trim();
+        const city = regCity.value.trim();
+        const email = currentUser.email;
+        const lastDon = document.getElementById('regLastDon').value;
+        const medicalCond = document.getElementById('regMedical').value;
+        const address = document.getElementById('regAddress').value.trim();
+        const gender = document.getElementById('regGender').value;
+        const consent = regConsent.checked;
+
+        // validations
+        if (!firstName || !lastName) {
+          showToast('red', 'Missing Information', 'Please enter your full name.');
+          return false;
+        }
+        if (!selectedBloodType) {
+          showToast('red', 'Blood Type Required', 'Please select your blood type (A+, B-, O+, etc).');
+          return false;
+        }
+        if (!phone) {
+          showToast('red', 'Phone Required', 'Mobile number is mandatory for emergency matching.');
+          return false;
+        }
+        if (!city) {
+          showToast('red', 'City Required', 'Your city helps us match local requests.');
+          return false;
+        }
+        if (isNaN(age) || age < 18 || age > 65) {
+          showToast('red', 'Eligibility Issue', 'Age must be between 18 and 65 years.');
+          return false;
+        }
+        if (!consent) {
+          showToast('red', 'Consent Required', 'Please accept the terms and confirm eligibility to register.');
+          return false;
+        }
+
+        // generate donor id (demo)
+        const donorId = 'D' + Math.floor(Math.random() * 900 + 100);
+        const fullName = `${firstName} ${lastName}`;
+        const newDonor = {
+          id: donorId,
+          name: fullName,
+          blood: selectedBloodType,
+          age: parseInt(age) || 0,
+          phone: phone,
+          city: city,
+          email: email || 'not provided',
+          last: lastDon || '—',
+          medical: medicalCond,
+          address: address,
+          gender: gender,
+          status: 'Active',
+          donations: 0,
+          registeredAt: new Date().toLocaleString()
+        };
+
+        // Sync with global database
+        const existing = JSON.parse(localStorage.getItem('lifesaver_donors') || '[]');
+        existing.unshift(newDonor);
+        localStorage.setItem('lifesaver_donors', JSON.stringify(existing));
+
+        registeredDonors = existing;
+
+        // show success banner with details
+        regSuccessMsgSpan.innerHTML = `Thank you ${fullName}! Your donor ID is ${donorId}. Blood type: ${selectedBloodType}. We'll notify you when ${selectedBloodType} is needed near ${city}. Together we save lives.`;
+        regSuccessBanner.style.display = 'block';
+
+        // scroll success into view
+        regSuccessBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // show toast
+        showToast('green', '🎉 Registration Successful', `${fullName} (${selectedBloodType}) joined the donor network.`);
+
+        // clear sensitive fields optionally? keep but maybe reset later? We reset only the blood selection style and keep data for demo.
+        // but we don't reset full form for consecutive registrations - user can register multiple? but typical one per person.
+        // for better UX we keep the form as is, but you could optionally reset.
+        // reset blood type highlight and selected flag? but we keep it.
+        // and disable submit? no, allow multiple registrations? demo purpose, but we just show banner.
+        // also we disable double submission visual effect
+        registerBtn.disabled = false;
+        return true;
+      }
+
+      // helper: scroll to register form
+      function scrollToForm() {
+        document.querySelector('.register-body').scrollIntoView({ behavior: 'smooth' });
+      }
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // load any existing donors from localStorage for demo stats (optional)
+      function loadDemoStats() {
+        const stored = localStorage.getItem('lifesaver_donors');
+        if (stored) {
+          try {
+            registeredDonors = JSON.parse(stored);
+          } catch (e) { }
+        }
+      }
+
+      // add navigation link smooth to home demo
+      document.querySelectorAll('.nav-link, .footer-col span').forEach(el => {
+        if (el.innerText.includes('Home') || el.innerText.includes('Request Blood') || el.innerText.includes('Find Donors') || el.innerText.includes('Contact')) {
+          el.addEventListener('click', function (e) {
+            showToast('gold', '✨ Navigation', 'This is a focused donor registration preview. Main website sections are fully functional in the complete Crimson platform.');
+          });
+        }
+      });
+
+      // handle register button click
+      registerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        submitDonorRegistration();
+      });
+
+      // add enter key support for some fields (optional)
+      const formInputs = document.querySelectorAll('#donorFormCard input, #donorFormCard select, #donorFormCard textarea');
+      formInputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+            e.preventDefault();
+            if (e.target.id === 'regAddress') return;
+            submitDonorRegistration();
+          }
+        });
+      });
+
+      // initialise
+      initBloodSelector();
+      loadDemoStats();
+      checkLoginSession();
+      // set default dummy demo data to showcase (optional)
+      if (registeredDonors.length === 0) {
+        // Preload nothing, but we show empty.
+      }
+
+      function toggleMobileMenu() {
+        const links = document.querySelector('.nav-links');
+        links.classList.toggle('open');
+      }
+
+      // For console info
+      console.log('Crimson donor registration ready — every registration helps save lives.');
+    </script>
+</body>
+
+</html>

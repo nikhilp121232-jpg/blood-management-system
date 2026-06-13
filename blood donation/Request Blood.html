@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Life Saver | Request Blood – Emergency & Planned Support</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+        <link rel="stylesheet" href="/style/request.css">
+
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- navigation -->
+    <nav class="nav">
+      <div class="nav-logo" onclick="window.location.href='#'">
+        <div class="nav-logo-drop"><svg viewBox="0 0 24 24">
+            <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+          </svg></div>
+        <div class="nav-logo-text">Life Saver</div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register as donor.html" class="nav-link">Register as Donor</a>
+        <a href="Request Blood.html" class="nav-link">Request Blood</a>
+        <a href="find donor.html" class="nav-link">Find Donors</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <button class="nav-cta" id="loginNavBtn" onclick="openLoginModal()">Login</button>
+      </div>
+      <div class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- hero section -->
+    <div class="request-hero">
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <div class="section-tag-text">Emergency & Planned Requests</div>
+      </div>
+      <h2 class="section-h2">Request <em>Blood</em> — Get Matched Instantly</h2>
+      <p class="section-sub">Fill the form below. Our AI-powered donor network will notify compatible donors near you.
+        Critical cases get priority matching within minutes.</p>
+    </div>
+
+    <!-- main request form -->
+    <div class="request-body">
+      <div id="formSectionLock" class="form-lock-wrapper locked">
+        <div class="lock-overlay">
+          <button class="lock-btn" onclick="window.location.href='index.html?triggerLogin=true'">🩸 LOG IN TO ACCESS FORM</button>
+        </div>
+        <div class="form-card" id="requestFormCard">
+          <div class="form-section-title">📍 Patient & Hospital Details</div>
+          <div class="form-row">
+            <div class="field"><label>Patient Full Name *</label><input type="text" id="reqPatName"
+                placeholder="e.g., Meera Joshi"></div>
+            <div class="field"><label>Patient Age</label><input type="number" id="reqPatAge" placeholder="42"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Hospital / Facility *</label><input type="text" id="reqHospital"
+                placeholder="City Hospital, Mumbai"></div>
+            <div class="field"><label>Ward / Department</label><input type="text" id="reqWard"
+                placeholder="ICU / Maternity / Surgery"></div>
+          </div>
+
+          <div class="form-divider"></div>
+          <div class="form-section-title">🩸 Blood Requirement</div>
+
+          <!-- blood type selector -->
+          <div class="field" style="margin-bottom: 20px;">
+            <label>Blood Type Required *</label>
+            <div class="blood-type-selector" id="bloodGroupSelector">
+              <div class="bts-option" data-bt="A+">A+</div>
+              <div class="bts-option" data-bt="A-">A−</div>
+              <div class="bts-option" data-bt="B+">B+</div>
+              <div class="bts-option" data-bt="B-">B−</div>
+              <div class="bts-option" data-bt="AB+">AB+</div>
+              <div class="bts-option" data-bt="AB-">AB−</div>
+              <div class="bts-option" data-bt="O+">O+</div>
+              <div class="bts-option" data-bt="O-">O−</div>
+            </div>
+            <input type="hidden" id="reqBloodHidden">
+          </div>
+
+          <div class="form-row triple">
+            <div class="field"><label>Units Required *</label><input type="number" id="reqUnits" placeholder="2" min="1"
+                max="20"></div>
+            <div class="field"><label>Required By Date *</label><input type="date" id="reqByDate"></div>
+            <div class="field"><label>Your Contact Phone *</label><input type="tel" id="reqPhone"
+                placeholder="+91 98765 43210"></div>
+          </div>
+
+          <!-- urgency selector with visual tiers -->
+          <div class="field" style="margin-bottom: 20px;">
+            <label>Urgency Level *</label>
+            <div class="urgency-selector" id="urgencySelector">
+              <div class="urg-option" data-urgency="High">
+                <div class="urg-icon">🚨</div>
+                <div class="urg-title">Immediate</div>
+                <div class="urg-sub">Within hours</div>
+              </div>
+              <div class="urg-option" data-urgency="Medium">
+                <div class="urg-icon">⚡</div>
+                <div class="urg-title">Today</div>
+                <div class="urg-sub">Within 24 hours</div>
+              </div>
+              <div class="urg-option" data-urgency="Low">
+                <div class="urg-icon">📅</div>
+                <div class="urg-title">Planned</div>
+                <div class="urg-sub">This week</div>
+              </div>
+            </div>
+            <input type="hidden" id="reqUrgencyHidden">
+          </div>
+
+          <div class="form-row single">
+            <div class="field"><label>Additional Notes (reason, medical info, location details)</label><textarea
+                id="reqNotes" rows="3"
+                placeholder="e.g., Thalassemia patient, surgery scheduled, emergency after accident..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+          <div style="display:flex; align-items: flex-start; gap: 12px; margin-bottom: 28px;">
+            <input type="checkbox" id="reqConsent"
+              style="width:18px; height:18px; margin-top: 2px; accent-color: var(--red);">
+            <label for="reqConsent" style="font-size:13px; color:#555; line-height:1.5;">I confirm that the information
+              provided is accurate and I understand that Life Saver will share this request with registered donors.
+              Emergency contact will be used for donor matching.</label>
+          </div>
+
+          <button class="form-submit" id="submitRequestBtn">Submit Blood Request →</button>
+
+          <div class="success-banner" id="reqSuccessBanner">
+            <div class="success-icon">🏥🩸</div>
+            <h3>Request Submitted Successfully!</h3>
+            <p id="reqSuccessMsg">Your request has been logged. Our matching system is notifying nearby donors. You will
+              receive a call within 30 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="display:inline-flex">
+            <div class="nav-logo-drop"><svg viewBox="0 0 24 24">
+                <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+              </svg></div>
+            <div class="nav-logo-text">Life Saver</div>
+          </div>
+          <p>India's most trusted blood donor network. Emergency support 24/7.</p>
+        </div>
+        <div class="footer-col">
+          <h4>For Patients</h4><span
+            onclick="document.querySelector('.request-body').scrollIntoView({behavior:'smooth'})">Request
+            Blood</span><span>Find Donors</span><span>Emergency Hotline</span>
+        </div>
+        <div class="footer-col">
+          <h4>For Donors</h4><span>Register to Donate</span><span>Donation Guide</span><span>Donor Rewards</span>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4><span>Contact Us</span><span>FAQ</span><span>Hospital Partners</span>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Life Saver Blood Donor Network. Saving lives together.</span><span>🩸
+          Every drop counts</span></div>
+    </footer>
+  </div>
+
+  <div class="toast-panel" id="toastPanel"></div>
+
+    <style>
+      .locked { pointer-events: none; }
+    </style>
+
+  <script>
+    // ===== AUTH GUARD =====
+    let currentUser = null;
+    let pendingNavUrl = null;
+    let isPendingRequest = false;
+
+    function getSession() {
+      try { return JSON.parse(sessionStorage.getItem('lifesaver_user')); } catch (e) { return null; }
+    }
+    function checkLoginSession() {
+      const s = getSession();
+      if (s && s.email) {
+        const name = s.email.split('@')[0];
+        currentUser = { email: s.email, name: name.charAt(0).toUpperCase() + name.slice(1) };
+        unlockForm();
+        // Hide login button
+        const btn = document.getElementById('loginNavBtn');
+        if (btn) btn.style.display = 'none';
+      } else {
+        lockForm();
+      }
+    }
+
+    function toggleProfileDropdown() {
+      document.getElementById('profileDropdown').classList.toggle('show');
+    }
+
+    function updateUIAfterLogin() {
+      document.getElementById('loginNavBtn').style.display = 'none';
+      document.getElementById('profileSection').style.display = 'block';
+      document.getElementById('profileName').textContent = currentUser.name;
+      document.getElementById('profileEmail').textContent = currentUser.email;
+      document.getElementById('profileDonorId').textContent = "Donor ID: D-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('profileBtn').textContent = currentUser.name.charAt(0).toUpperCase();
+    }
+
+    function lockForm() {
+      document.getElementById('formSectionLock').classList.add('locked');
+    }
+    function unlockForm() {
+      document.getElementById('formSectionLock').classList.remove('locked');
+    }
+    function openLoginModal() {
+      document.getElementById('authLoginModal').classList.add('show');
+      document.getElementById('authLoginError').style.display = 'none';
+    }
+    function closeLoginModal() {
+      document.getElementById('authLoginModal').classList.remove('show');
+    }
+    function requireLoginNav(url) {
+      if (currentUser) { window.location.href = url; }
+      else { pendingNavUrl = url; showToast('gold', '🔒 Login Required', 'Please log in to continue.'); openLoginModal(); }
+    }
+    function performLogin() {
+      const email = document.getElementById('authEmail').value.trim();
+      if (!email || !email.includes('@')) { document.getElementById('authLoginError').style.display = 'block'; return; }
+      const name = email.split('@')[0];
+      currentUser = { email, name: name.charAt(0).toUpperCase() + name.slice(1) };
+      sessionStorage.setItem('lifesaver_user', JSON.stringify({ email }));
+      showToast('green', 'Welcome!', `Logging in...`);
+      setTimeout(() => {
+        window.location.href = 'index.html?view=profile';
+      }, 1000);
+
+      if (isPendingRequest) {
+        isPendingRequest = false;
+        setTimeout(() => submitBloodRequest(), 500);
+      } else if (pendingNavUrl) {
+        const u = pendingNavUrl; pendingNavUrl = null;
+        setTimeout(() => window.location.href = u, 300);
+      }
+    }
+    function logoutUser() {
+      currentUser = null; sessionStorage.removeItem('lifesaver_user');
+      document.getElementById('loginNavBtn').style.display = 'block';
+      lockForm();
+      showToast('gold', 'Logged Out', 'You have been signed out.');
+    }
+    // ===== END AUTH GUARD =====
+
+    // ----- DOM elements -----
+    const bloodOptions = document.querySelectorAll('#bloodGroupSelector .bts-option');
+    const urgencyOptions = document.querySelectorAll('#urgencySelector .urg-option');
+    const reqBloodHidden = document.getElementById('reqBloodHidden');
+    const reqUrgencyHidden = document.getElementById('reqUrgencyHidden');
+    const submitBtn = document.getElementById('submitRequestBtn');
+    const successBanner = document.getElementById('reqSuccessBanner');
+    const successMsgSpan = document.getElementById('reqSuccessMsg');
+
+    // state
+    let selectedBloodType = '';
+    let selectedUrgency = '';
+
+    // ----- toast helper -----
+    function showToast(type, title, message) {
+      const panel = document.getElementById('toastPanel');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      const iconMap = { red: '🚨', green: '✅', gold: '⚡', blue: 'ℹ️' };
+      const icon = iconMap[type] || '🩸';
+      toast.innerHTML = `
+      <div class="toast-icon">${icon}</div>
+      <div><div class="toast-title">${title}</div><div class="toast-msg">${message}</div></div>
+      <button class="toast-x" onclick="this.parentElement.remove()">×</button>
+      <div class="toast-bar" style="width:100%"></div>
+    `;
+      panel.appendChild(toast);
+      const bar = toast.querySelector('.toast-bar');
+      const duration = 5000;
+      bar.style.transition = `width ${duration}ms linear`;
+      requestAnimationFrame(() => { requestAnimationFrame(() => { bar.style.width = '0%'; }); });
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    }
+
+    // ----- blood type selector logic -----
+    function initBloodSelector() {
+      bloodOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          bloodOptions.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          selectedBloodType = opt.getAttribute('data-bt');
+          if (reqBloodHidden) reqBloodHidden.value = selectedBloodType;
+        });
+      });
+    }
+
+    // ----- urgency selector (with class styling)-----
+    function initUrgencySelector() {
+      urgencyOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          urgencyOptions.forEach(o => {
+            o.classList.remove('selected', 'high', 'medium', 'low');
+          });
+          opt.classList.add('selected');
+          const urgencyVal = opt.getAttribute('data-urgency');
+          selectedUrgency = urgencyVal;
+          if (urgencyVal === 'High') opt.classList.add('high');
+          else if (urgencyVal === 'Medium') opt.classList.add('medium');
+          else if (urgencyVal === 'Low') opt.classList.add('low');
+          if (reqUrgencyHidden) reqUrgencyHidden.value = urgencyVal;
+        });
+      });
+    }
+
+    // ----- generate unique request ID (demo) -----
+    function generateRequestId() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+      let code = 'REQ-';
+      for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return code;
+    }
+
+    // ----- store request in localStorage (Sync with Admin Panel) -----
+    function saveRequestToStorage(requestObj) {
+      let existing = localStorage.getItem('lifesaver_requests');
+      let requests = [];
+      if (existing) {
+        try {
+          requests = JSON.parse(existing);
+        } catch (e) { }
+      }
+      requests.unshift(requestObj);
+      localStorage.setItem('lifesaver_requests', JSON.stringify(requests));
+    }
+
+    // ----- main submit handler -----
+    function submitBloodRequest() {
+      // Late Auth guard: Show login ONLY on submit
+      if (!currentUser) {
+        isPendingRequest = true;
+        showToast('gold', 'Almost Done!', 'Please log in to finalize your blood request.');
+        openLoginModal();
+        return false;
+      }
+      // Get form values
+      const patientName = document.getElementById('reqPatName').value.trim();
+      const hospital = document.getElementById('reqHospital').value.trim();
+      const phone = document.getElementById('reqPhone').value.trim();
+      const units = parseInt(document.getElementById('reqUnits').value);
+      const requiredDate = document.getElementById('reqByDate').value;
+      const patientAge = document.getElementById('reqPatAge').value;
+      const ward = document.getElementById('reqWard').value;
+      const notes = document.getElementById('reqNotes').value;
+      const consent = document.getElementById('reqConsent').checked;
+
+      // Validations
+      if (!patientName) {
+        showToast('red', 'Patient name required', 'Please enter patient full name.');
+        return false;
+      }
+      if (!hospital) {
+        showToast('red', 'Hospital required', 'Please specify the hospital or facility.');
+        return false;
+      }
+      if (!selectedBloodType) {
+        showToast('red', 'Blood type required', 'Please select the required blood group.');
+        return false;
+      }
+      if (!phone || phone.length < 10) {
+        showToast('red', 'Valid phone required', 'We need your contact number for donor matching.');
+        return false;
+      }
+      if (isNaN(units) || units < 1) {
+        showToast('red', 'Units required', 'Please specify how many units of blood are needed.');
+        return false;
+      }
+      if (!selectedUrgency) {
+        showToast('red', 'Urgency level required', 'Please select if this is Immediate, Today or Planned.');
+        return false;
+      }
+      if (!consent) {
+        showToast('red', 'Consent required', 'Please confirm the accuracy of information.');
+        return false;
+      }
+
+      // Build request object
+      const requestId = generateRequestId();
+      const requestData = {
+        id: requestId,
+        patient: patientName,
+        hospital: hospital,
+        blood: selectedBloodType,
+        units: units,
+        phone: phone,
+        urgency: selectedUrgency || 'Medium',
+        date: requiredDate || new Date().toLocaleDateString(),
+        ward: ward,
+        age: patientAge,
+        notes: notes,
+        status: 'Open',
+        userEmail: currentUser ? currentUser.email : null
+      };
+
+      // Save to localStorage for demo persistence
+      saveRequestToStorage(requestData);
+
+      // Show success banner with custom message
+      let urgencyText = (selectedUrgency === 'High') ? 'IMMEDIATE priority' : (selectedUrgency === 'Medium') ? 'high priority (24h)' : 'planned request';
+      successMsgSpan.innerHTML = `✅ Request ID: ${requestId}<br>Blood type: ${selectedBloodType} · ${units} unit(s) · ${urgencyText}. Our donor network has been alerted. You will receive a call/SMS within 30 minutes at ${phone}.`;
+      successBanner.style.display = 'block';
+      successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Optional: simulate automatic matching toast
+      showToast('green', '📢 Request Registered', `${requestId} – ${selectedBloodType} needed. Notifying donors near ${hospital.split(',')[0]}.`);
+
+      // (Optional) Reset urgency/blood selection? We keep but we don't reset whole form to allow re-submit? but user can submit again.
+      // For UX we don't clear, just success banner.
+      return true;
+    }
+
+    // attach event to submit button
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      submitBloodRequest();
+    });
+
+    // additional: pressing enter on last field triggers submit?
+    const formInputs = document.querySelectorAll('#requestFormCard input, #requestFormCard textarea, #requestFormCard select');
+    formInputs.forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && (e.target.id === 'reqNotes' || e.target.id === 'reqPhone')) {
+          e.preventDefault();
+          submitBloodRequest();
+        }
+      });
+    });
+
+    // small helper to show navigation demo info
+    document.querySelectorAll('.nav-link, .footer-col span').forEach(el => {
+      if (el.innerText.includes('Home') || el.innerText.includes('Register') || el.innerText.includes('Find Donors')) {
+        el.addEventListener('click', (e) => {
+          showToast('gold', '✨ Full platform', 'This is a dedicated blood request page. Complete Life Saver platform includes donor registration & matching.');
+        });
+      }
+    });
+
+    // initialise selectors
+    initBloodSelector();
+    initUrgencySelector();
+    checkLoginSession();
+
+    // set default date to tomorrow if empty (helpful)
+    const dateInput = document.getElementById('reqByDate');
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const yyyy = tomorrow.getFullYear();
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const dd = String(tomorrow.getDate()).padStart(2, '0');
+      dateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    function toggleMobileMenu() {
+      const links = document.querySelector('.nav-links');
+      links.classList.toggle('open');
+    }
+
+    console.log('Life Saver Blood Request System ready — help save lives.');
+  </script>
+</body>
+
+</html>

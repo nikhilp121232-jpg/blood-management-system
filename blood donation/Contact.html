@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Life Saver | Contact Us – 24/7 Emergency Support</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="/style/contact.css">
+
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="nav-logo" onclick="window.location.href='#'">
+        <div class="nav-logo-drop"><svg viewBox="0 0 24 24">
+            <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+          </svg></div>
+        <div class="nav-logo-text">Life Saver</div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="register as donor.html" class="nav-link">Register as Donor</a>
+        <a href="Request Blood.html" class="nav-link">Request Blood</a>
+        <a href="find donor.html" class="nav-link">Find Donors</a>
+        <a href="Contact.html" class="nav-link">Contact</a>
+        <button class="nav-cta" id="loginNavBtn" onclick="openLoginModal()">Login</button>
+      </div>
+      <div class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="contact-hero">
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <div class="section-tag-text">Get in Touch</div>
+      </div>
+      <h2 class="section-h2">We're here <em>for you</em> — 24/7</h2>
+      <p style="color: rgba(255,255,255,0.6); font-size: 18px; max-width: 600px; margin-top: 16px;">Whether you need
+        blood urgently, want to donate, or have questions — our team is always ready to help.</p>
+    </div>
+
+    <!-- Contact Layout -->
+    <div class="contact-layout">
+      <!-- Left Column: Contact Info -->
+      <div class="contact-info">
+        <h2>Reach out <em>anytime</em></h2>
+        <p>Our support team is available 24 hours a day, 7 days a week. For blood emergencies, use the hotline for
+          immediate assistance.</p>
+
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Emergency Hotline</div>
+              <div class="contact-item-value">1800-CRIMSON (1800-274-6766)</div>
+              <div style="font-size: 12px; color: var(--red); margin-top: 4px;">📞 24/7 · Toll-free</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Email Support</div>
+              <div class="contact-item-value">support@crimson.org</div>
+              <div style="font-size: 12px; color: var(--gray);">Emergency: emergency@crimson.org</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Head Office</div>
+              <div class="contact-item-value">12 Lifeline Road, Bandra West</div>
+              <div style="font-size: 12px; color: var(--gray);">Mumbai – 400050, India</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Operating Hours</div>
+              <div class="contact-item-value">Mon–Sat: 8:00 AM – 8:00 PM</div>
+              <div style="font-size: 12px; color: var(--gray);">Emergency Support: 24/7</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-emergency">
+          <h3>🚨 Medical Emergency?</h3>
+          <p>For immediate blood requirement, our emergency response team is on standby. Call now for instant donor
+            matching.</p>
+          <div class="hotline">+91 98765 43210</div>
+          <p style="margin-top: 12px; font-size: 12px;">Available 24 hours · 365 days</p>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Form -->
+      <div>
+        <div class="form-card" id="contactFormCard">
+          <div class="form-section-title">Send us a message</div>
+          <div class="form-row">
+            <div class="field"><label>Full Name *</label><input type="text" id="ctName" placeholder="Priya Sharma">
+            </div>
+            <div class="field"><label>Phone / Email *</label><input type="text" id="ctContact"
+                placeholder="+91 98765 43210 or email@example.com"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Subject</label>
+              <select id="ctSubject">
+                <option value="General Enquiry">General Enquiry</option>
+                <option value="Donor Registration Help">Donor Registration Help</option>
+                <option value="Blood Request Emergency">Blood Request (Emergency)</option>
+                <option value="Hospital Partnership">Hospital Partnership</option>
+                <option value="Feedback / Complaint">Feedback / Complaint</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field"><label>Preferred Contact</label>
+              <select id="ctPreferred">
+                <option value="Phone">Phone Call</option>
+                <option value="Email">Email</option>
+                <option value="WhatsApp">WhatsApp</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row single">
+            <div class="field"><label>Message *</label>
+              <textarea id="ctMsg" rows="5"
+                placeholder="Tell us how we can help you... For blood emergencies, please also call our hotline immediately."></textarea>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; margin: 16px 0;">
+            <input type="checkbox" id="ctConsent" style="width: 18px; height: 18px; accent-color: var(--red);">
+            <label for="ctConsent" style="font-size: 13px; color: #666;">I consent to being contacted regarding my
+              query. For emergencies, I understand I should also call the hotline.</label>
+          </div>
+          <button class="form-submit" onclick="submitContact()">Send Message →</button>
+          <div class="success-banner" id="ctSuccessBanner">
+            <div class="success-icon">✉️❤️</div>
+            <h3>Message Sent Successfully!</h3>
+            <p id="ctSuccessMsg">Our team will respond within 24 hours. For emergencies, please call our 24/7 hotline.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map / Location Section -->
+    <div class="map-section">
+      <div class="section-tag" style="justify-content: center;">
+        <div class="section-tag-line"></div>
+        <div class="section-tag-text">Find Us</div>
+      </div>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 16px;">Our <em>locations</em>
+        across India</h2>
+      <p style="color: var(--gray); max-width: 600px; margin: 0 auto;">Jg Campus,Drive In Road,Ahmedabad,Gujarat,India
+      </p>
+      <div class="map-placeholder">
+        <iframe
+          src="https://maps.google.com/maps?q=JG%20Campus%2C%20Drive%20In%20Road%2C%20Ahmedabad%2C%20Gujarat%2C%20India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="display:inline-flex">
+            <div class="nav-logo-drop"><svg viewBox="0 0 24 24">
+                <path d="M12 2C12 2 4 10 4 15a8 8 0 0016 0C20 10 12 2 12 2z" />
+              </svg></div>
+            <div class="nav-logo-text">Life Saver</div>
+          </div>
+          <p>India's most trusted blood donor network. Every 2 seconds, someone needs blood. Be a hero.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4><span onclick="window.location.href='#'">Home</span><span
+            onclick="window.location.href='#'">Register as Donor</span><span onclick="window.location.href='#'">Request
+            Blood</span>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4><span
+            onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth'})">Contact
+            Us</span><span>FAQ</span><span>Emergency Guide</span>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4><span>Privacy Policy</span><span>Terms of Service</span><span>Donor Eligibility</span>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Life Saver Blood Donor Network. All rights reserved.</span><span>🩸 Give
+          blood · Give life</span></div>
+    </footer>
+  </div>
+
+  <div class="toast-panel" id="toastPanel"></div>
+
+  <!-- Login Modal -->
+  <div id="authLoginModal"
+    style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center"
+    class="auth-modal">
+    <div
+      style="background:white;border-radius:24px;width:90%;max-width:420px;padding:40px;text-align:center;animation:slideUp 0.3s ease;position:relative">
+      <span onclick="closeLoginModal()"
+        style="position:absolute;top:16px;right:20px;font-size:24px;cursor:pointer;color:#aaa">&times;</span>
+      <div
+        style="width:56px;height:56px;background:linear-gradient(135deg,#8B0000,#C0182A);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:22px">
+        🩸</div>
+      <h2 style="font-family:'Playfair Display',serif;color:#1A0A0A;margin-bottom:6px">Login to Continue</h2>
+      <p style="color:#6B5B55;font-size:13px;margin-bottom:24px">You must be logged in to register as a donor or request
+        blood.</p>
+      <input type="email" id="authEmail" placeholder="Enter your email address"
+        style="width:100%;padding:14px 16px;margin-bottom:12px;border:1.5px solid #E8E0D8;border-radius:10px;font-size:14px;font-family:'Lato',sans-serif;outline:none"
+        onfocus="this.style.borderColor='#C0182A'" onblur="this.style.borderColor='#E8E0D8'">
+      <input type="password" id="authPass" placeholder="Password (any value for demo)"
+        style="width:100%;padding:14px 16px;margin-bottom:16px;border:1.5px solid #E8E0D8;border-radius:10px;font-size:14px;font-family:'Lato',sans-serif;outline:none"
+        onfocus="this.style.borderColor='#C0182A'" onblur="this.style.borderColor='#E8E0D8'"
+        onkeyup="if(event.key==='Enter')performLogin()">
+      <p id="authLoginError" style="color:#C0182A;font-size:12px;margin-bottom:10px;display:none">Please enter a valid
+        email address.</p>
+      <button onclick="performLogin()"
+        style="width:100%;padding:14px;background:#C0182A;color:white;border:none;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:0.05em">Log
+        In →</button>
+      <p style="margin-top:16px;font-size:12px;color:#aaa">Back to <a href="index.html"
+          style="color:#C0182A;text-decoration:none">Home</a></p>
+    </div>
+  </div>
+  <style>
+    .auth-modal {
+      display: none;
+    }
+
+    .auth-modal.show {
+      display: flex !important;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+  </style>
+
+  <script>
+    // ===== AUTH GUARD =====
+    let currentUser = null;
+    let pendingNavUrl = null;
+
+    function getSession() {
+      try { return JSON.parse(sessionStorage.getItem('lifesaver_user')); } catch (e) { return null; }
+    }
+    function checkLoginSession() {
+      const s = getSession();
+      if (s && s.email) {
+        const name = s.email.split('@')[0];
+        currentUser = { email: s.email, name: name.charAt(0).toUpperCase() + name.slice(1) };
+        document.getElementById('loginNavBtn').style.display = 'none';
+      }
+    }
+    function openLoginModal() {
+      document.getElementById('authLoginModal').classList.add('show');
+      document.getElementById('authLoginError').style.display = 'none';
+    }
+    function closeLoginModal() {
+      document.getElementById('authLoginModal').classList.remove('show');
+    }
+    function requireLoginNav(url) {
+      if (currentUser) { window.location.href = url; }
+      else { pendingNavUrl = url; showToast('gold', '🔒 Login Required', 'Please log in to continue.'); openLoginModal(); }
+    }
+    function performLogin() {
+      const email = document.getElementById('authEmail').value.trim();
+      if (!email || !email.includes('@')) { document.getElementById('authLoginError').style.display = 'block'; return; }
+      const name = email.split('@')[0];
+      currentUser = { email, name: name.charAt(0).toUpperCase() + name.slice(1) };
+      sessionStorage.setItem('lifesaver_user', JSON.stringify({ email }));
+      document.getElementById('loginNavBtn').style.display = 'none';
+      closeLoginModal();
+      showToast('green', 'Welcome!', `Logged in as ${currentUser.name}`);
+      if (pendingNavUrl) { const u = pendingNavUrl; pendingNavUrl = null; setTimeout(() => window.location.href = u, 300); }
+    }
+    function logoutUser() {
+      currentUser = null; sessionStorage.removeItem('lifesaver_user');
+      document.getElementById('loginNavBtn').style.display = 'block';
+      showToast('gold', 'Logged Out', 'You have been signed out.');
+    }
+    // ===== END AUTH GUARD =====
+
+    // Toast notification system
+    function showToast(type, title, message) {
+      const panel = document.getElementById('toastPanel');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      const iconMap = { red: '🚨', green: '✅', gold: '⚡', blue: 'ℹ️' };
+      const icon = iconMap[type] || '📧';
+      toast.innerHTML = `
+      <div class="toast-icon">${icon}</div>
+      <div><div class="toast-title">${title}</div><div class="toast-msg">${message}</div></div>
+      <button class="toast-x" onclick="this.parentElement.remove()">×</button>
+      <div class="toast-bar" style="width:100%"></div>
+    `;
+      panel.appendChild(toast);
+      const bar = toast.querySelector('.toast-bar');
+      const duration = 4500;
+      bar.style.transition = `width ${duration}ms linear`;
+      requestAnimationFrame(() => { requestAnimationFrame(() => { bar.style.width = '0%'; }); });
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    }
+
+    // Store contact messages in localStorage (demo)
+    function saveContactMessage(messageObj) {
+      let existing = localStorage.getItem('crimson_contact_messages');
+      let messages = [];
+      if (existing) {
+        try { messages = JSON.parse(existing); } catch (e) { }
+      }
+      messages.unshift(messageObj);
+      localStorage.setItem('crimson_contact_messages', JSON.stringify(messages));
+    }
+
+    // Submit contact form
+    function submitContact() {
+      const name = document.getElementById('ctName').value.trim();
+      const contact = document.getElementById('ctContact').value.trim();
+      const subject = document.getElementById('ctSubject').value;
+      const preferred = document.getElementById('ctPreferred').value;
+      const message = document.getElementById('ctMsg').value.trim();
+      const consent = document.getElementById('ctConsent').checked;
+
+      // Validation
+      if (!name) {
+        showToast('red', 'Name Required', 'Please enter your full name.');
+        return false;
+      }
+      if (!contact) {
+        showToast('red', 'Contact Required', 'Please provide a phone number or email address.');
+        return false;
+      }
+      if (!message) {
+        showToast('red', 'Message Required', 'Please write your message or query.');
+        return false;
+      }
+      if (!consent) {
+        showToast('red', 'Consent Required', 'Please confirm that we may contact you.');
+        return false;
+      }
+
+      // Create message object
+      const timestamp = new Date().toLocaleString();
+      const messageId = 'MSG' + Math.floor(Math.random() * 10000);
+      const newMessage = {
+        id: messageId,
+        name: name,
+        contact: contact,
+        subject: subject,
+        preferred: preferred,
+        message: message,
+        timestamp: timestamp,
+        status: 'Unread'
+      };
+
+      saveContactMessage(newMessage);
+
+      // Show success banner
+      const successBanner = document.getElementById('ctSuccessBanner');
+      const successMsg = document.getElementById('ctSuccessMsg');
+      let responseMsg = `Thank you ${name}! Your message has been received. `;
+      if (subject.includes('Emergency') || subject.includes('Blood Request')) {
+        responseMsg += `For immediate assistance, please call our 24/7 hotline: 1800-CRIMSON or +91 98765 43210.`;
+      } else {
+        responseMsg += `Our team will respond within 24 hours via ${preferred}.`;
+      }
+      successMsg.innerHTML = responseMsg;
+      successBanner.style.display = 'block';
+      successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Show toast notification
+      showToast('green', '📬 Message Sent', `We've received your enquiry. ${subject.includes('Emergency') ? 'Emergency team notified.' : 'We\'ll reply soon.'}`);
+
+      // Optional: clear sensitive fields? keep for demo but reset consent? not clearing all for UX
+      document.getElementById('ctConsent').checked = false;
+      // Don't clear name/contact to allow easy re-submit? better not clear.
+
+      return true;
+    }
+
+    // Navigation hints for demo
+    document.querySelectorAll('.nav-link, .footer-col span').forEach(el => {
+      const text = el.innerText;
+      if (text.includes('Home') || text.includes('Register') || text.includes('Request Blood') || text.includes('Find Donors')) {
+        el.addEventListener('click', (e) => {
+          if (!text.includes('Contact')) {
+            showToast('gold', '✨ Navigation', 'This is the Contact page. Use the form above to reach our support team.');
+          }
+        });
+      }
+    });
+
+    checkLoginSession();
+  </script>
+  
+  </script>
+</body>
+
+</html>

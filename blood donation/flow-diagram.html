@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Saver - Data Flow Diagram</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #c0182a;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 36px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+    .flow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .flow-section {
+      flex: 1;
+      min-width: 300px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      padding: 30px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .flow-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 10px;
+    }
+    .flow-step {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s;
+    }
+    .flow-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      background: rgba(255,255,255,0.25);
+    }
+    .step-number {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      background: #c0182a;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 35px;
+      font-weight: bold;
+      margin-right: 12px;
+      font-size: 18px;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    .arrow {
+      text-align: center;
+      font-size: 40px;
+      color: #c0182a;
+      margin: 20px 0;
+    }
+    .storage-box {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 16px;
+      padding: 30px;
+      margin: 40px 0;
+      color: white;
+      text-align: center;
+    }
+    .storage-box h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+    .storage-items {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .storage-item {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 20px 30px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .storage-item strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .storage-item small {
+      opacity: 0.9;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .feature-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 25px;
+      color: white;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    .feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .btn {
+      display: inline-block;
+      background: #c0182a;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 10px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: #a01525;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(192, 24, 42, 0.4);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🩸 Life Saver - Data Flow Architecture</h1>
+    <p class="subtitle">Complete Integration between Forms and Admin Panel</p>
+
+    <div class="flow-container">
+      <!-- Donor Registration Flow -->
+      <div class="flow-section">
+        <h2>👥 Donor Registration Flow</h2>
+        
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">📝 User Opens Form</div>
+            <div class="step-desc">User navigates to "Register as Donor" page</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">✍️ Fill Details</div>
+            <div class="step-desc">Name, Blood Type, Age, Phone, City, Email</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">✅ Validation</div>
+            <div class="step-desc">Form validates required fields and blood type</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">4</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">💾 Save to Storage</div>
+            <div class="step-desc">Data saved to localStorage with unique ID</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">5</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">🎉 Success Message</div>
+            <div class="step-desc">User sees confirmation with Donor ID</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blood Request Flow -->
+      <div class="flow-section">
+        <h2>🏥 Blood Request Flow</h2>
+        
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">📝 User Opens Form</div>
+            <div class="step-desc">User navigates to "Request Blood" page</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">✍️ Fill Details</div>
+            <div class="step-desc">Patient, Hospital, Blood Type, Units, Urgency</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">✅ Validation</div>
+            <div class="step-desc">Form validates required fields and urgency</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">4</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">💾 Save to Storage</div>
+            <div class="step-desc">Request saved to localStorage with unique ID</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">5</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">🎉 Success Message</div>
+            <div class="step-desc">User sees confirmation with Request ID</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Panel Flow -->
+      <div class="flow-section">
+        <h2>👨‍💼 Admin Panel Flow</h2>
+        
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">🚀 Panel Opens</div>
+            <div class="step-desc">Admin opens the management panel</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">📥 Load Data</div>
+            <div class="step-desc">Reads donors and requests from localStorage</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">📊 Display Data</div>
+            <div class="step-desc">Shows all data in tables and cards</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">4</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">🔄 Auto-Refresh</div>
+            <div class="step-desc">Updates every 2 seconds automatically</div>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="step-number">5</div>
+          <div style="display: inline-block; vertical-align: top; width: calc(100% - 50px);">
+            <div class="step-title">⚡ Real-time Updates</div>
+            <div class="step-desc">New data appears without manual refresh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage Box -->
+    <div class="storage-box pulse">
+      <h2>💾 Central Data Storage (localStorage)</h2>
+      <p>All data is stored in browser's localStorage for persistence</p>
+      <div class="storage-items">
+        <div class="storage-item">
+          <strong>lifesaver_donors</strong>
+          <small>Stores all registered donors</small>
+        </div>
+        <div class="storage-item">
+          <strong>lifesaver_requests</strong>
+          <small>Stores all blood requests</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <h2 style="text-align: center; color: #333; margin-bottom: 20px; font-size: 28px;">✨ Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <div class="feature-title">Real-time Sync</div>
+        <div class="feature-desc">Admin panel automatically refreshes every 2 seconds</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🆔</div>
+        <div class="feature-title">Unique IDs</div>
+        <div class="feature-desc">Auto-generated IDs for donors (D001) and requests (REQ-001)</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <div class="feature-title">Persistent Storage</div>
+        <div class="feature-desc">Data remains even after browser close</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <div class="feature-title">Validation</div>
+        <div class="feature-desc">Complete form validation before submission</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-title">Search & Filter</div>
+        <div class="feature-desc">Admin can search and filter donors by blood type</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI Matching</div>
+        <div class="feature-desc">Automatic donor matching based on blood compatibility</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="btn-container">
+      <button class="btn" onclick="window.open('register as donor.html', '_blank')">
+        📝 Open Donor Form
+      </button>
+      <button class="btn" onclick="window.open('Request Blood.html', '_blank')">
+        🩸 Open Request Form
+      </button>
+      <button class="btn" onclick="window.open('admin panel.html', '_blank')">
+        👨‍💼 Open Admin Panel
+      </button>
+      <button class="btn" onclick="window.open('test-integration.html', '_blank')">
+        🧪 Open Test Page
+      </button>
+    </div>
+  </div>
+
+  <script>
+    console.log('🩸 Life Saver Data Flow Diagram loaded successfully!');
+    console.log('📊 Current Data:');
+    console.log('Donors:', JSON.parse(localStorage.getItem('lifesaver_donors') || '[]').length);
+    console.log('Requests:', JSON.parse(localStorage.getItem('lifesaver_requests') || '[]').length);
+  </script>
+</body>
+</html>
